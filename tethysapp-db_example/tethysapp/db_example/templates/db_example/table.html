@@ -1,0 +1,13 @@
+{% comment %} Create a table with info passed through the context. The html will be returned by render {% endcomment %}
+<table>
+  {% for column in columns %}
+    <th>{{ column }}</th>
+  {% endfor %}
+  {% for row in rows %}
+  <tr>
+    {% for item in row %}
+      <td>{{ item }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>

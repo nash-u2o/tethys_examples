@@ -1,0 +1,73 @@
+{% extends "postgis_layer_example/base.html" %}
+{% load tethys_gizmos %}
+
+{% block header_buttons %}
+  <div class="header-button glyphicon-button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Help">
+    <a data-bs-toggle="modal" data-bs-target="#help-modal"><i class="bi bi-question-circle"></i></a>
+  </div>
+{% endblock %}
+
+{% block app_content %}
+  <div id="map-container">
+    <div id="map">
+      <div id="toolbar">
+        <select id="select-geom">
+          <option value='draw-polygon'>Draw Polygon</option>
+          <option value='draw-polyline'>Draw PolyLine</option>
+          <option value='draw-point'>Draw Point</option>
+        </select> 
+        <button id="save-button">Save Layer</buttion>
+        <button id="load-button">Load Layer</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block after_app_content %}
+  {% comment %} Modal to save layers {% endcomment %}
+  <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="help-modal-label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Save Layer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <form>
+            <label for='lname'>Layer Name:</label><br>
+            <input type='text' id='lname' name='lname'><br>
+            <label for='color'>Pick Color:</label><br>
+            <input type='color' id='color' name='color' style="width: 40.5%">
+          </form>
+          <button id="save">Save</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} Modal to load layers {% endcomment %}
+  <div class="modal fade" id="load-modal" tabindex="-1" role="dialog" aria-labelledby="help-modal-label">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Load Layer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <select id="load-select"></select>
+          <br>
+          <button id="load-submit">Load Layer</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block app_actions_override %}
+{% endblock %}
